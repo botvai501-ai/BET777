@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#090909">
+<title>BET777 • Virtual Arcade</title>
+<style>
+:root{--bg:#080808;--panel:#151515;--gold:#e7b84b;--gold2:#ffdf83;--muted:#a8a08e;--line:#3b301b}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 50% -10%,#38270d 0,#101010 36%,#070707 75%);color:#f7f0df;font-family:system-ui,-apple-system,"Noto Sans Bengali",sans-serif;min-height:100vh}
+header{padding:18px 16px 12px;display:flex;align-items:center;justify-content:space-between;max-width:1100px;margin:auto}
+.brand{font-weight:950;letter-spacing:2px;font-size:25px;color:var(--gold2);text-shadow:0 0 18px #c18b2c66}.brand small{display:block;font-size:9px;letter-spacing:4px;color:#bca36b;text-align:center}
+.pill{border:1px solid var(--line);border-radius:30px;padding:8px 12px;color:var(--gold2);font-size:12px;background:#15120c}
+main{max-width:1100px;margin:auto;padding:8px 16px 40px}
+.hero{border:1px solid #60491d;border-radius:22px;padding:24px 20px;background:linear-gradient(120deg,#211909,#151515 55%,#241a0b);box-shadow:0 15px 45px #0008;position:relative;overflow:hidden}
+.hero:after{content:"777";position:absolute;right:12px;top:-28px;font-size:130px;font-weight:1000;color:#e7b84b0b}
+h1{font-size:clamp(25px,5vw,42px);margin:0 0 8px;color:var(--gold2)}.hero p{margin:0;color:#d3c7ad;max-width:650px;line-height:1.6}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 0}
+.stat,.card{background:linear-gradient(145deg,#1a1a1a,#101010);border:1px solid #302817;border-radius:16px;padding:14px}
+.stat b{display:block;color:var(--gold2);font-size:20px}.stat span{color:var(--muted);font-size:11px}
+.nav{display:flex;gap:8px;overflow:auto;padding:8px 0 14px}.nav button{white-space:nowrap}
+button{border:1px solid #6b5121;background:linear-gradient(180deg,#d9ad4b,#9a6b1e);color:#171108;font-weight:800;border-radius:12px;padding:11px 14px;cursor:pointer}
+button.secondary{background:#191919;color:var(--gold2);border-color:#40351f}button:disabled{opacity:.45;cursor:not-allowed}
+.section-title{font-size:19px;color:var(--gold2);margin:16px 0 10px}
+.games{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:11px}
+.game{min-height:135px;display:flex;flex-direction:column;justify-content:space-between;cursor:pointer;transition:.15s}.game:hover{transform:translateY(-2px);border-color:#96702c}
+.emoji{font-size:30px}.game strong{display:block;margin:8px 0 3px}.game small{color:var(--muted)}
+.panel{margin-top:15px;display:none}.panel.active{display:block}.gamebox{background:#111;border:1px solid #59431d;border-radius:18px;padding:18px;margin-top:12px}
+.question{font-size:19px;margin:4px 0 14px}.answers{display:grid;grid-template-columns:1fr 1fr;gap:8px}.answers button{min-height:48px}
+.feedback{min-height:26px;color:var(--gold2);margin-top:12px}
+input{width:100%;padding:12px;border-radius:10px;border:1px solid #554321;background:#090909;color:white;margin:7px 0 12px}
+table{width:100%;border-collapse:collapse}td,th{text-align:left;padding:10px;border-bottom:1px solid #332a1a;font-size:13px}
+.notice{font-size:12px;color:#b9ae98;line-height:1.6;border:1px dashed #59431d;padding:12px;border-radius:12px;margin-top:18px}
+footer{text-align:center;color:#756b58;font-size:11px;padding:20px}
+@media(max-width:460px){.stats{gap:7px}.stat{padding:10px}.stat b{font-size:17px}.answers{grid-template-columns:1fr}.hero{padding:20px 16px}}
+</style>
+</head>
+<body>
+<header><div class="brand">BET777<small>VIRTUAL ARCADE</small></div><div class="pill">● OFFLINE DEMO</div></header>
+<main>
+<section class="hero">
+<h1>খেলুন, শিখুন, আনন্দ করুন</h1>
+<p>BET777 একটি বিনোদনমূলক ভার্চুয়াল আর্কেড। এখানে পয়েন্টের কোনো আর্থিক মূল্য নেই—শুধু মজার জন্য।</p>
+</section>
+<div class="stats">
+<div class="stat"><b id="coins">100</b><span>ভার্চুয়াল পয়েন্ট</span></div>
+<div class="stat"><b id="played">0</b><span>খেলা হয়েছে</span></div>
+<div class="stat"><b id="streak">0</b><span>সেরা স্কোর</span></div>
+</div>
+<div class="nav">
+<button onclick="show('home')">হোম</button><button class="secondary" onclick="show('profile')">প্রোফাইল</button><button class="secondary" onclick="show('history')">খেলার ইতিহাস</button><button class="secondary" onclick="daily()">দৈনিক বোনাস</button>
+</div>
+<section id="home" class="panel active">
+<div class="section-title">🎮 মিনি গেমস</div>
+<div class="games">
+<div class="card game" onclick="startGame('football')"><div class="emoji">⚽</div><div><strong>ফুটবল কুইজ</strong><small>খেলার জ্ঞান যাচাই করুন</small></div></div>
+<div class="card game" onclick="startGame('cricket')"><div class="emoji">🏏</div><div><strong>ক্রিকেট কুইজ</strong><small>ক্রিকেট সম্পর্কে জানুন</small></div></div>
+<div class="card game" onclick="startGame('memory')"><div class="emoji">🧠</div><div><strong>মেমোরি ম্যাচ</strong><small>একই কার্ড খুঁজে নিন</small></div></div>
+<div class="card game" onclick="startGame('logic')"><div class="emoji">🧩</div><div><strong>লজিক পাজল</strong><small>সহজ ধাঁধার সমাধান</small></div></div>
+<div class="card game" onclick="startGame('reaction')"><div class="emoji">🏎️</div><div><strong>রিঅ্যাকশন চ্যালেঞ্জ</strong><small>দ্রুত প্রতিক্রিয়া দেখান</small></div></div>
+<div class="card game" onclick="startGame('plane')"><div class="emoji">✈️</div><div><strong>এয়ারপ্লেন স্কিল</strong><small>বাধা এড়ানোর মিনি গেম</small></div></div>
+</div>
+<div id="gameArea" class="gamebox" style="display:none"></div>
+</section>
+<section id="profile" class="panel">
+<div class="section-title">👤 ডেমো প্রোফাইল</div><div class="card">
+<label>আপনার নাম</label><input id="username" placeholder="নাম লিখুন"><button onclick="saveName()">সেভ করুন</button>
+<p style="color:#b9ae98;font-size:12px">এটি শুধু এই ডিভাইসের অফলাইন ডেমো। অনলাইন অ্যাকাউন্ট নয়।</p></div></section>
+<section id="history" class="panel"><div class="section-title">📜 খেলার ইতিহাস</div><div class="card"><table><thead><tr><th>গেম</th><th>ফলাফল</th><th>পয়েন্ট</th></tr></thead><tbody id="historyRows"><tr><td colspan="3">এখনো কোনো খেলা হয়নি</td></tr></tbody></table></div></section>
+<div class="notice">🔒 <b>গুরুত্বপূর্ণ:</b> এটি সম্পূর্ণ অফলাইন ডেমো। পয়েন্ট কেবল এই ডিভাইসে সংরক্ষিত থাকে, কোনো টাকা জমা/উত্তোলন, বাজি, জুয়া, নগদ পুরস্কার বা পয়েন্ট বিনিময়ের সুবিধা নেই। লগইন, সার্ভার ও অ্যাডমিন নিরাপত্তা এই ডেমোতে সক্রিয় নয়।</div>
+</main><footer>BET777 • Entertainment only • Offline demo v1.0</footer>
+<script>
+const $=id=>document.getElementById(id);
+let data={coins:100,played:0,best:0,history:[],name:"Player",daily:""};
+try{data={...data,...JSON.parse(localStorage.getItem("bet777demo")||"{}")}}catch(e){}
+function save(){localStorage.setItem("bet777demo",JSON.stringify(data));render()}
+function render(){$("coins").textContent=data.coins;$("played").textContent=data.played;$("streak").textContent=data.best;$("username").value=data.name||"";$("historyRows").innerHTML=data.history.length?data.history.slice().reverse().map(x=>`<tr><td>${x.game}</td><td>${x.result}</td><td>+${x.points}</td></tr>`).join(""):'<tr><td colspan="3">এখনো কোনো খেলা হয়নি</td></tr>'}
+function show(id){document.querySelectorAll(".panel").forEach(x=>x.classList.remove("active"));$(id).classList.add("active")}
+function daily(){let d=new Date().toLocaleDateString();if(data.daily===d){alert("আজকের বোনাস ইতিমধ্যে নেওয়া হয়েছে।");return}data.daily=d;data.coins+=10;save();alert("দৈনিক অংশগ্রহণ বোনাস: +১০ ভার্চুয়াল পয়েন্ট")}
+function saveName(){data.name=$("username").value.trim()||"Player";save();alert("নাম সেভ হয়েছে")}
+const qs={
+football:[["একটি ফুটবল দলে মাঠে সাধারণত কতজন খেলোয়াড় থাকে?",["৯","১০","১১","১২"],2],["বিশ্বকাপ ফুটবলের নিয়ন্ত্রক সংস্থা কোনটি?",["FIFA","ICC","IOC","AFC"],0]],
+cricket:[["একটি ক্রিকেট দলে মাঠে একসঙ্গে কতজন খেলোয়াড় থাকে?",["৯","১০","১১","১২"],2],["ক্রিকেটে LBW-এর পূর্ণরূপ কী?",["Long Bat Width","Leg Before Wicket","Line Ball Wide","Last Boundary Win"],1]],
+logic:[["ধারাটি পূরণ করুন: ২, ৪, ৬, ৮, ?",["৯","১০","১১","১২"],1],["এক সপ্তাহে কয় দিন?",["৫","৬","৭","৮"],2]]
+};
+function startGame(type){let a=$("gameArea");a.style.display="block";if(qs[type]){let q=qs[type][Math.floor(Math.random()*qs[type].length)];a.innerHTML=`<b>${type==="football"?"⚽ ফুটবল কুইজ":type==="cricket"?"🏏 ক্রিকেট কুইজ":"🧩 লজিক পাজল"}</b><div class="question">${q[0]}</div><div class="answers">${q[1].map((v,i)=>`<button class="secondary" onclick="answer(${i},${q[2]},'${type}')">${v}</button>`).join("")}</div><div class="feedback" id="fb"></div>`}
+else if(type==="memory"){let icons=["🍀","⭐","🍀","⭐"];icons.sort(()=>Math.random()-.5);a.innerHTML='<b>🧠 মেমোরি ম্যাচ</b><p>একই দুটি চিহ্ন খুঁজুন।</p><div class="answers">'+icons.map((v,i)=>`<button class="secondary" id="m${i}" onclick="flip(${i},'${v}')">❔</button>`).join("")+'</div><div class="feedback" id="fb"></div>';window.mem={icons,chosen:[]}}
+else if(type==="reaction"){a.innerHTML='<b>🏎️ রিঅ্যাকশন চ্যালেঞ্জ</b><p>প্রস্তুত হলে শুরু চাপুন। সবুজ হলে দ্রুত চাপ দিন।</p><button id="react" onclick="reactionStart()">শুরু</button><div class="feedback" id="fb"></div>'}
+else{a.innerHTML='<b>✈️ এয়ারপ্লেন স্কিল</b><p>বিমানটি বাধার ফাঁক দিয়ে চালান। নিচের বোতাম চাপলে বিমান উপরে উঠবে।</p><div id="plane" style="font-size:42px;padding:14px;text-align:center">✈️　　🟫</div><button onclick="planeMove()">উপরে উড়ুন</button><div class="feedback" id="fb">৩টি সফল চালের লক্ষ্য নিন!</div>';window.planeScore=0}}
+function finish(game,result,pts){data.played++;data.best=Math.max(data.best,pts);data.coins+=pts;data.history.push({game,result,points:pts});save()}
+function answer(i,correct,type){let f=$("fb");if(i===correct){f.textContent="সঠিক উত্তর! +৫ পয়েন্ট";finish(type,"সঠিক",5)}else{f.textContent="ভুল উত্তর। আবার চেষ্টা করুন—এটি শেখার খেলা।";finish(type,"চেষ্টা",1)}}
+function flip(i,v){let m=window.mem;if(m.chosen.some(x=>x.i===i))return;$("m"+i).textContent=v;m.chosen.push({i,v});if(m.chosen.length===2){if(m.chosen[0].v===m.chosen[1].v){$("fb").textContent="মিলেছে! +৫ পয়েন্ট";finish("মেমোরি ম্যাচ","সফল",5)}else{$("fb").textContent="মেলেনি—আবার খেলুন";setTimeout(()=>m.chosen.forEach(x=>$("m"+x.i).textContent="❔"),650)}m.chosen=[]}}
+function reactionStart(){let b=$("react"),f=$("fb");b.disabled=true;f.textContent="অপেক্ষা করুন…";setTimeout(()=>{b.disabled=false;b.textContent="এখন চাপুন!";b.style.background="#4c9b62";let t=Date.now();b.onclick=()=>{let ms=Date.now()-t;f.textContent=`আপনার সময় ${ms} ms • +${ms<600?5:2} পয়েন্ট`;finish("রিঅ্যাকশন","সম্পন্ন",ms<600?5:2);b.onclick=()=>reactionStart();b.textContent="আবার খেলুন";b.style.background=""}},1200+Math.random()*1800)}
+function planeMove(){window.planeScore++;$("plane").textContent=window.planeScore%2?"✈️　　　🟫":"🟫　　　✈️";if(window.planeScore>=3){$("fb").textContent="চমৎকার! বাধা এড়িয়েছেন। +৫ পয়েন্ট";finish("এয়ারপ্লেন স্কিল","৩টি বাধা পার",5);window.planeScore=0}else $("fb").textContent=`আর ${3-window.planeScore}টি চাল বাকি`}
+render();
+</script>
+</body></html>
